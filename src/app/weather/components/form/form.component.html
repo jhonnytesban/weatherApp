@@ -28,29 +28,4 @@
   </select>
 </form>
 
-<table *ngIf="stationData">
-  <thead>
-    <tr>
-      <th>Humedad Max</th>
-      <th>Humedad Min</th>
-      <th>Humedad Media</th>
-      <th>Temperatura Max</th>
-      <th>Temperatura Min</th>
-      <th>Temperatura Media</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{stationData.humedadMax}}</td>
-      <td>{{stationData.humedadMin}}</td>
-      <td>{{stationData.humedadMedia}}</td>
-      <td>{{stationData.tempMax}}</td>
-      <td>{{stationData.tempMin}}</td>
-      <td>{{stationData.tempMedia}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="stationError" class="container-error">
-  <p class="error__text">Esa Estación está fuera de servicio</p>
-</div>
+<app-table-station ></app-table-station>

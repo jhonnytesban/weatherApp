@@ -12,14 +12,24 @@ export class WeatherService {
   public dateYesterday!: Date
   public dateToday!: string
 
-  public station!: string[]
-  // private stationData!: Estacion
+  public stationData!: EstacionData | undefined
+  public stationError: boolean = false
 
-  // getstationData(): Estacion{
-  //   return this.stationData
-  // }
+  public station!: string[]
 
   constructor(private http: HttpClient) { }
+
+  get currentDateYesteday(): string{
+    this.dateYesterday = new Date()
+    let ms = 24 * 60 * 60 * 1000
+    let ayer = new Date(this.dateYesterday.getTime() - ms)
+    let yesterday = ayer.toISOString().slice(0, -14)
+    return yesterday
+  }
+  get currentDateToday(): string {
+    this.dateToday = new Date().toISOString().slice(0, -14)
+    return this.dateToday
+  }
 
   getStationAlmeria(): Observable<Estacion[]> {
     return this.http.get<Estacion[]>(`${this.baseUrl}estaciones/4`)
@@ -46,17 +56,6 @@ export class WeatherService {
     return this.http.get<Estacion[]>(`${this.baseUrl}estaciones/41`)
   }
 
-  get currentDateYesteday(): string{
-    this.dateYesterday = new Date()
-    let ms = 24 * 60 * 60 * 1000
-    let ayer = new Date(this.dateYesterday.getTime() - ms)
-    let yesterday = ayer.toISOString().slice(0, -14)
-    return yesterday
-  }
-  get currentDateToday(): string {
-    this.dateToday = new Date().toISOString().slice(0, -14)
-    return this.dateToday
-  }
 
   getDataStation(): Observable<EstacionData> {
     return this.http.get<EstacionData>(`${this.baseUrl}datosdiarios/${this.station[0]}/${this.station[1]}/${this.currentDateYesteday}/false`)

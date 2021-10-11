@@ -21,9 +21,6 @@ export class FormComponent implements OnInit {
   public estacionesMalaga! : Estacion[]
   public estacionesSevilla!: Estacion[]
 
-  public stationData!: EstacionData | undefined
-  public stationError: boolean = false
-
   public estacionActual!: string[]
 
   public form: FormGroup = new FormGroup({
@@ -75,11 +72,11 @@ export class FormComponent implements OnInit {
     this.weatherService.getDataStation()
       .subscribe(res => {
         console.log(res)
-        this.stationError = false
-        this.stationData = res
+        this.weatherService.stationError = false
+        this.weatherService.stationData = res
       }, ()=> {
-        this.stationError = true
-        this.stationData = undefined
+        this.weatherService.stationError = true
+        this.weatherService.stationData = undefined
       })
     console.log(this.weatherService.currentDateYesteday)
   }

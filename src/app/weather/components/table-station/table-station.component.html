@@ -1,0 +1,26 @@
+<table *ngIf="stationDataValue">
+  <thead>
+    <tr>
+      <th>Humedad Max</th>
+      <th>Humedad Min</th>
+      <th>Humedad Media</th>
+      <th>Temperatura Max</th>
+      <th>Temperatura Min</th>
+      <th>Temperatura Media</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{stationDataValue.humedadMax}}</td>
+      <td>{{stationDataValue.humedadMin}}</td>
+      <td>{{stationDataValue.humedadMedia}}</td>
+      <td>{{stationDataValue.tempMax}}</td>
+      <td>{{stationDataValue.tempMin}}</td>
+      <td>{{stationDataValue.tempMedia}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="error" class="container-error">
+  <p class="error__text">Esa Estación está fuera de servicio</p>
+</div>
