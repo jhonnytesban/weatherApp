@@ -9,6 +9,7 @@ import { Estacion, Provincia } from './interfaces/province.interface';
 export class WeatherService {
 
   private baseUrl: string = 'https://www.juntadeandalucia.es/agriculturaypesca/ifapa/riaws/'
+  public date: Date = new Date()
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +36,10 @@ export class WeatherService {
   }
   getStationSevilla(): Observable<Estacion[]> {
     return this.http.get<Estacion[]>(`${this.baseUrl}estaciones/41`)
+  }
+
+  get currentDate(): string{
+    this.date = new Date()
+    return this.date.toISOString().slice(0, -14)
   }
 }

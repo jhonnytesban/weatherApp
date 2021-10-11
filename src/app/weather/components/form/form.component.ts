@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { Estacion } from 'src/app/interfaces/province.interface';
 import { WeatherService } from 'src/app/weather.service';
@@ -11,14 +12,19 @@ import { WeatherService } from 'src/app/weather.service';
 export class FormComponent implements OnInit {
 
   public estacionesAlmeria!: Estacion[]
-  public estacionesCadiz!: Estacion[]
+  public estacionesCadiz!  : Estacion[]
   public estacionesCordoba!: Estacion[]
   public estacionesGranada!: Estacion[]
-  public estacionesHuelva!: Estacion[]
-  public estacionesJaen!: Estacion[]
-  public estacionesMalaga!: Estacion[]
+  public estacionesHuelva! : Estacion[]
+  public estacionesJaen!   : Estacion[]
+  public estacionesMalaga! : Estacion[]
   public estacionesSevilla!: Estacion[]
 
+  public estacionActual!: string[]
+
+  public form: FormGroup = new FormGroup({
+    estaciones: new FormControl()
+  })
 
 
   constructor(private weatherService: WeatherService) {}
@@ -58,9 +64,10 @@ export class FormComponent implements OnInit {
       })
   }
 
-  getEstacion(event: any){
-    console.log(event.target.value)
-    console.log(event)
+  getEstacion(){
+    this.estacionActual = this.form.value.estaciones.split(',')
+    console.log(this.estacionActual[0], this.estacionActual[1])
+    console.log(this.weatherService.currentDate)
   }
 
 }

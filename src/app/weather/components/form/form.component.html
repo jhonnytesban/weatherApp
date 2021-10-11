@@ -1,27 +1,29 @@
-<select name="select" (change)="getEstacion($event)">
-  <option value="">Estaciones</option>
-  <optgroup label="Almería">
-    <option *ngFor="let estacion of estacionesAlmeria" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Cádiz">
-    <option *ngFor="let estacion of estacionesCadiz" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Huelva">
-    <option *ngFor="let estacion of estacionesHuelva" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Sevilla">
-    <option *ngFor="let estacion of estacionesSevilla" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Granada">
-    <option *ngFor="let estacion of estacionesGranada" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Jaén">
-    <option *ngFor="let estacion of estacionesJaen" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Córdoba">
-    <option *ngFor="let estacion of estacionesCordoba" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-  <optgroup label="Málaga">
-    <option *ngFor="let estacion of estacionesMalaga" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
-  </optgroup>
-</select>
+<form [formGroup]="form" (change)="getEstacion()">
+  <select name="select" formControlName="estaciones">
+    <option value="">Estaciones</option>
+    <optgroup label="Almería">
+      <option *ngFor="let estacion of estacionesAlmeria" value="{{[estacion.provincia.id,estacion.codigoEstacion]}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Cádiz">
+      <option *ngFor="let estacion of estacionesCadiz" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Huelva">
+      <option *ngFor="let estacion of estacionesHuelva" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Sevilla">
+      <option *ngFor="let estacion of estacionesSevilla" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Granada">
+      <option *ngFor="let estacion of estacionesGranada" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Jaén">
+      <option *ngFor="let estacion of estacionesJaen" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Córdoba">
+      <option *ngFor="let estacion of estacionesCordoba" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+    <optgroup label="Málaga">
+      <option *ngFor="let estacion of estacionesMalaga" value="{{estacion.provincia.id}}" >{{estacion.nombre}}</option>
+    </optgroup>
+  </select>
+</form>
