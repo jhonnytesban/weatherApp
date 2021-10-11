@@ -66,8 +66,13 @@ export class FormComponent implements OnInit {
 
   getEstacion(){
     this.estacionActual = this.form.value.estaciones.split(',')
-    console.log(this.estacionActual[0], this.estacionActual[1])
-    console.log(this.weatherService.currentDate)
+    this.weatherService.station = this.estacionActual
+    console.log(this.weatherService.station)
+    this.weatherService.getDataStation()
+      .subscribe(res => {
+        console.log(res)
+      })
+    console.log(this.weatherService.currentDateYesteday)
   }
 
 }
