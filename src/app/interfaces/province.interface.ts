@@ -18,6 +18,32 @@ export interface Provincia {
   nombre: String;
 }
 
+export interface EstacionData {
+  bateria:         number;
+  dia:             number;
+  dirViento:       number;
+  dirVientoVelMax: number;
+  et0:             number;
+  fecha:           Date;
+  fechaUtlMod:     Date;
+  horMinHumMax:    string;
+  horMinHumMin:    string;
+  horMinTempMax:   string;
+  horMinTempMin:   string;
+  horMinVelMax:    string;
+  humedadMax:      number;
+  humedadMedia:    number;
+  humedadMin:      number;
+  precipitacion:   number;
+  radiacion:       number;
+  tempMax:         number;
+  tempMedia:       number;
+  tempMin:         number;
+  velViento:       number;
+  velVientoMax:    number;
+}
+
+
 export enum Nombre {
   Almería = "Almería",
   Cádiz = "Cádiz",

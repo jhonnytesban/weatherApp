@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { catchError } from "rxjs/operators";
 
-import { Estacion } from 'src/app/interfaces/province.interface';
+import { Estacion, EstacionData } from 'src/app/interfaces/province.interface';
 import { WeatherService } from 'src/app/weather.service';
 
 @Component({
@@ -20,10 +21,13 @@ export class FormComponent implements OnInit {
   public estacionesMalaga! : Estacion[]
   public estacionesSevilla!: Estacion[]
 
+  public stationData!: EstacionData | undefined
+  public stationError: boolean = false
+
   public estacionActual!: string[]
 
   public form: FormGroup = new FormGroup({
-    estaciones: new FormControl()
+    estaciones: new FormControl('')
   })
 
 
@@ -67,10 +71,15 @@ export class FormComponent implements OnInit {
   getEstacion(){
     this.estacionActual = this.form.value.estaciones.split(',')
     this.weatherService.station = this.estacionActual
-    console.log(this.weatherService.station)
+    console.log(this.estacionActual)
     this.weatherService.getDataStation()
       .subscribe(res => {
         console.log(res)
+        this.stationError = false
+        this.stationData = res
+      }, ()=> {
+        this.stationError = true
+        this.stationData = undefined
       })
     console.log(this.weatherService.currentDateYesteday)
   }

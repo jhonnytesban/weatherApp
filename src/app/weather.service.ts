@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
-import { Estacion, Provincia } from './interfaces/province.interface';
+import { Observable,  } from 'rxjs';
+import { Estacion, EstacionData } from './interfaces/province.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,15 @@ import { Estacion, Provincia } from './interfaces/province.interface';
 export class WeatherService {
 
   private baseUrl: string = 'https://www.juntadeandalucia.es/agriculturaypesca/ifapa/riaws/'
-  public date!: Date
+  public dateYesterday!: Date
+  public dateToday!: string
+
   public station!: string[]
+  // private stationData!: Estacion
+
+  // getstationData(): Estacion{
+  //   return this.stationData
+  // }
 
   constructor(private http: HttpClient) { }
 
@@ -40,17 +47,18 @@ export class WeatherService {
   }
 
   get currentDateYesteday(): string{
-    this.date = new Date()
+    this.dateYesterday = new Date()
     let ms = 24 * 60 * 60 * 1000
-    let ayer = new Date(this.date.getTime() - ms)
+    let ayer = new Date(this.dateYesterday.getTime() - ms)
     let yesterday = ayer.toISOString().slice(0, -14)
     return yesterday
   }
-  // get currentDateToday: string {
+  get currentDateToday(): string {
+    this.dateToday = new Date().toISOString().slice(0, -14)
+    return this.dateToday
+  }
 
-  // }
-
-  getDataStation(): Observable<any> {
-    return this.http.get(`${this.baseUrl}datosdiarios/${this.station[0]}/${this.station[1]}/${this.currentDateYesteday}/false`)
+  getDataStation(): Observable<EstacionData> {
+    return this.http.get<EstacionData>(`${this.baseUrl}datosdiarios/${this.station[0]}/${this.station[1]}/${this.currentDateYesteday}/false`)
   }
 }
