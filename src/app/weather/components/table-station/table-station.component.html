@@ -1,25 +1,80 @@
-<table *ngIf="stationDataValue">
-  <thead>
-    <tr>
-      <th>Humedad Max</th>
-      <th>Humedad Min</th>
-      <th>Humedad Media</th>
-      <th>Temperatura Max</th>
-      <th>Temperatura Min</th>
-      <th>Temperatura Media</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{stationDataValue.humedadMax}}</td>
-      <td>{{stationDataValue.humedadMin}}</td>
-      <td>{{stationDataValue.humedadMedia}}</td>
-      <td>{{stationDataValue.tempMax}}</td>
-      <td>{{stationDataValue.tempMin}}</td>
-      <td>{{stationDataValue.tempMedia}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container-table">
+  <table *ngIf="stationDataValue" class="table">
+    <caption class="title-table">Medidas de Humedad</caption>
+    <thead>
+      <tr>
+        <th>Humedad Max</th>
+        <th>Humedad Min</th>
+        <th>Humedad Media</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{stationDataValue.humedadMax}}%</td>
+        <td>{{stationDataValue.humedadMin}}%</td>
+        <td>{{stationDataValue.humedadMedia}}%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="stationDataValue" class="table">
+    <caption class="title-table">Medidas de Temperatura</caption>
+    <thead>
+      <tr>
+        <th>Temperatura Max</th>
+        <th>Temperatura Min</th>
+        <th>Temperatura Media</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{stationDataValue.tempMax}}°C</td>
+        <td>{{stationDataValue.tempMin}}°C</td>
+        <td>{{stationDataValue.tempMedia}}°C</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="stationDataValue" class="table">
+    <caption class="title-table">Medidas del Viento</caption>
+    <thead>
+      <tr>
+        <th>Dir. Viento</th>
+        <th>Dir. Viento Vel Max</th>
+        <th>Velocidad del Viento</th>
+        <th>Velocidad del Viento Max</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{stationDataValue.dirViento}}</td>
+        <td>{{stationDataValue.dirVientoVelMax}}</td>
+        <td>{{stationDataValue.velViento}}</td>
+        <td>{{stationDataValue.velVientoMax}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="stationDataValue" class="table">
+    <caption class="title-table">Medidas de Prec. y Rad.</caption>
+    <thead>
+      <tr>
+        <th>Precipitación</th>
+        <th>Radiación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{stationDataValue.precipitacion}}</td>
+        <td>{{stationDataValue.radiacion}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+
 
 <div *ngIf="error" class="container-error">
   <p class="error__text">Esa Estación está fuera de servicio</p>

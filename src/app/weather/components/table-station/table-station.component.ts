@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { EstacionData } from 'src/app/interfaces/province.interface';
 import { WeatherService } from 'src/app/weather.service';
 

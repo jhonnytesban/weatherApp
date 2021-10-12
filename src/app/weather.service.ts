@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable,  } from 'rxjs';
+
 import { Estacion, EstacionData } from './interfaces/province.interface';
 
 @Injectable({
@@ -26,6 +27,7 @@ export class WeatherService {
     let yesterday = ayer.toISOString().slice(0, -14)
     return yesterday
   }
+
   get currentDateToday(): string {
     this.dateToday = new Date().toISOString().slice(0, -14)
     return this.dateToday
@@ -55,7 +57,6 @@ export class WeatherService {
   getStationSevilla(): Observable<Estacion[]> {
     return this.http.get<Estacion[]>(`${this.baseUrl}estaciones/41`)
   }
-
 
   getDataStation(): Observable<EstacionData> {
     return this.http.get<EstacionData>(`${this.baseUrl}datosdiarios/${this.station[0]}/${this.station[1]}/${this.currentDateYesteday}/false`)
