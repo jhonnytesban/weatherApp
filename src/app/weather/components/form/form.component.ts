@@ -65,19 +65,25 @@ export class FormComponent implements OnInit {
   }
 
   getEstacion(){
+    // console.log(this.form.get('estaciones')?.value)
+    if (this.form.get('estaciones')?.value === '') {
+      this.weatherService.stationError = false
+      this.weatherService.stationData = undefined
+      return
+    } 
     this.estacionActual = this.form.value.estaciones.split(',')
     this.weatherService.station = this.estacionActual
-    console.log(this.estacionActual)
+    // console.log(this.estacionActual)
     this.weatherService.getDataStation()
       .subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.weatherService.stationError = false
         this.weatherService.stationData = res
       }, ()=> {
         this.weatherService.stationError = true
         this.weatherService.stationData = undefined
       })
-    console.log(this.weatherService.currentDateYesteday)
+    // console.log(this.weatherService.currentDateYesteday)
   }
 
 }

@@ -10,6 +10,7 @@ import { WeatherService } from 'src/app/weather.service';
 })
 export class TableStationComponent implements OnInit {
 
+  public date: string = ''
 
   get stationDataValue(): EstacionData | undefined {
     return this.weatherService.stationData
@@ -21,6 +22,7 @@ export class TableStationComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
   
   ngOnInit(): void {
+    this.date = this.weatherService.currentDateYesteday
   }
 
 }
