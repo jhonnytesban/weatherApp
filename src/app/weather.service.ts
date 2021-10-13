@@ -10,8 +10,11 @@ import { Estacion, EstacionData } from './interfaces/province.interface';
 export class WeatherService {
 
   private baseUrl: string = 'https://www.juntadeandalucia.es/agriculturaypesca/ifapa/riaws/'
+
   public dateYesterday!: Date
-  public dateToday!: string
+  public dateToday!    : string
+  public dateYear!     : number
+  public dateMonth!    : number
 
   public stationData!: EstacionData | undefined
   public stationError: boolean = false
@@ -31,6 +34,14 @@ export class WeatherService {
   get currentDateToday(): string {
     this.dateToday = new Date().toISOString().slice(0, -14)
     return this.dateToday
+  }
+
+  get currentDateYear(): number {
+    return this.dateYear = new Date().getFullYear()
+  }
+
+  get currentDateMonth(): number {
+    return this.dateMonth = new Date().getMonth()
   }
 
   getStationAlmeria(): Observable<Estacion[]> {
@@ -60,5 +71,9 @@ export class WeatherService {
 
   getDataStation(): Observable<EstacionData> {
     return this.http.get<EstacionData>(`${this.baseUrl}datosdiarios/${this.station[0]}/${this.station[1]}/${this.currentDateYesteday}/false`)
+  }
+
+  getDataAnnual(): Observable<EstacionData[]> {
+    return this.http.get<EstacionData[]>(`${this.baseUrl}datosmensuales/${this.station[0]}/${this.station[1]}/${this.currentDateYear}/1/${this.currentDateMonth}`)
   }
 }

@@ -25,4 +25,12 @@ export class TableStationComponent implements OnInit {
     this.date = this.weatherService.currentDateYesteday
   }
 
+  getDataAnnual() {
+    this.weatherService.getDataAnnual()
+      .subscribe(res => {
+        console.log(res)
+      })
+  }
+
+
 }
